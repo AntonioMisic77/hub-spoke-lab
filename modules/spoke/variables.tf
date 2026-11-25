@@ -40,3 +40,8 @@ variable "hub_vnet_name" {
   description = "Name of the hub VNet"
   type        = string
 }
+variable "enable_nsg" {
+  description = "Create an NSG for the workload subnet"
+  type        = bool
+  default     = false
+}

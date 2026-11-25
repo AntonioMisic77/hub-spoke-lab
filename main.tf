@@ -20,6 +20,7 @@ module "spoke" {
   subnets             = each.value.subnets
   hub_vnet_id         = module.hub.vnet_id # output -> input
   hub_vnet_name       = module.hub.vnet_name
+  enable_nsg          = each.value.enable_nsg
   location            = var.location
   resource_group_name = var.resource_group_name
   tags                = local.tags

@@ -31,15 +31,17 @@ variable "hub" {
   })
 }
 
+
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
+
 variable "spokes" {
   description = "One entry per spoke, keyed by spoke name"
   type = map(object({
     address_space = list(string)
     subnets       = map(string)
+    enable_nsg    = optional(bool, false)
   }))
-}
-
-variable "tags" {
-  type    = map(string)
-  default = {}
 }

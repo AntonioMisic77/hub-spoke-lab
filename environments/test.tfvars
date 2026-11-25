@@ -16,6 +16,11 @@ spokes = {
     address_space = ["10.2.0.0/16"]
     subnets       = { workload = "10.2.1.0/24" }
   }
+  spoke3 = {
+    address_space = ["10.5.0.0/16"]
+    subnets       = { workload = "10.5.1.0/24" }
+    enable_nsg    = true
+  }
 }
 
 tags = {

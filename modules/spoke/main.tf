@@ -29,3 +29,19 @@ resource "azurerm_virtual_network_peering" "from_hub" {
   virtual_network_name      = var.hub_vnet_name
   remote_virtual_network_id = azurerm_virtual_network.this.id
 }
+
+resource "azurerm_network_security_group" "workload" {
+  count = var.enable_nsg ? 1 : 0
+
+  name                = "nsg-${var.name}-${var.suffix}"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  tags                = var.tags
+}
+
+resource "azurerm_subnet_network_security_group_association" "workload" {
+  count = var.enable_nsg ? 1 : 0
+
+  subnet_id                 = azurerm_subnet.this["workload"].id
+  network_security_group_id = azurerm_network_security_group.workload[0].id
+}
