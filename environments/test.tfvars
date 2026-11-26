@@ -24,5 +24,5 @@ spokes = {
 }
 
 tags = {
-  owner = "u07"
+  owner = "u07-lab8"
 }
