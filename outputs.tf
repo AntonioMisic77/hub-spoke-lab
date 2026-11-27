@@ -7,3 +7,8 @@ output "spoke_vnet_ids" {
   description = "Spoke VNet IDs, keyed by spoke name"
   value       = { for k, s in module.spoke : k => s.vnet_id }
 }
+
+output "spoke_vnet_names" {
+  description = "Spoke VNet names, keyed by spoke name"
+  value       = { for k, s in module.spoke : k => s.vnet_name }
+}
