@@ -1,9 +1,13 @@
-resource "azurerm_virtual_network" "this" {
+resource "azurerm_virtual_network" "hub" {
   name                = "vnet-${var.name}-${var.suffix}"
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = var.address_space
   tags                = var.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "azurerm_subnet" "this" {
@@ -11,6 +15,11 @@ resource "azurerm_subnet" "this" {
 
   name                 = "snet-${each.key}"
   resource_group_name  = var.resource_group_name
-  virtual_network_name = azurerm_virtual_network.this.name
+  virtual_network_name = azurerm_virtual_network.hub.name
   address_prefixes     = [each.value]
+}
+
+moved {
+  from = azurerm_virtual_network.this
+  to   = azurerm_virtual_network.hub
 }
