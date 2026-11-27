@@ -24,7 +24,7 @@ spokes = {
 }
 
 tags = {
-  owner      = "u07-lab8"
+  owner      = "u07-lab7"
   costcentre = "lab"
 }
 
